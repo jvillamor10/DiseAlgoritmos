@@ -5,7 +5,6 @@ public class Practica1 {
 		int[] numeros = {1,2,4,10,20,50,100,1000,2000,5000,10000,11000}; 
 		boolean opcion_correcta=true;
 
-		System.out.println("HOLA");
 		System.out.println("Iterativo: "+iterativo(20,5));
 		System.out.println("Recursivo: "+recursivo(20,5));
 
@@ -28,25 +27,39 @@ public class Practica1 {
 			}
 		}		*/
 	}
-	public static int iterativo(int n,int k){
-		double resultado=0;
-		int factorialn=1,factorialk=1,factorialnk=1;
-		int num_n=n;
-		int num_k=k;
-		int num_nk=n-k;
+	public static long iterativo(int n,int k){
 		
-		while(num_n!=0) {
-			factorialn=factorialn*num_n;
-			num_n--;
+		long factorialn=1,factorialk=1,factorialnk=1;
+		long num_nk=n-k;
+		
+		while(n>0) {
+			factorialn=factorialn*n;
+			n--;
+			if(k>0) {
+				factorialk=factorialk*k;
+				k--;
+			}
+			
+			if(num_nk>0) {
+				factorialnk=factorialnk*num_nk;
+				num_nk--;
+			}			
 		}
-		while(num_k!=0) {
-			factorialk=factorialk*num_k;
-			num_k--;
+				
+		//OTRA FORMA DE CALCULAR EL FACTORIAL, DA IGUAL DE MAL.
+		/*for(int i = 2; i <= n; i++) {
+			factorialn = factorialn * i;
+			System.out.println("N "+ factorialn);
 		}
-		while(num_nk!=0) {
-			factorialnk=factorialnk*num_nk;
-			num_nk--;
+		
+		for(int i = 2; i <= k; i++) {
+			factorialk = factorialk * i;
 		}
+		
+		for(int i = 2; i <= n-k; i++) {
+			factorialnk = factorialnk * i;
+		}
+		System.out.println("Factorial N: "+ factorialn +"Factorial K: "+ factorialk +"Factorial nk: "+ factorialnk);*/
 		
 		return factorialn/(factorialk*factorialnk);
 	}
