@@ -9,6 +9,7 @@ public class Practica1 {
 
 		System.out.println("Iterativo: "+iterativo(20,5));
 		System.out.println("Recursivo: "+recursivo(20,5));
+		System.out.println("Pilas: "+pilas(20,5));
 
 
 		/*for(int i=0;i<numeros.length;i++) { // Recorre el array numeros calculando el tiempo por cada posicion.
