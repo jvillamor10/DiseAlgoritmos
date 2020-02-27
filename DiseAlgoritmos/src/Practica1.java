@@ -7,9 +7,9 @@ public class Practica1 {
 		int[] numeros = {1,2,4,10,20,50,100,1000,2000,5000,10000,11000}; 
 		boolean opcion_correcta=true;
 
-		System.out.println("Iterativo: "+iterativo(20,5));
-		System.out.println("Recursivo: "+recursivo(20,5));
-		System.out.println("Pilas: "+pilas(20,5));
+		System.out.println("Iterativo: "+iterativo(3,2));
+		System.out.println("Recursivo: "+recursivo(3,2));
+		System.out.println("Pilas: "+pilas(3,2));
 
 
 		/*for(int i=0;i<numeros.length;i++) { // Recorre el array numeros calculando el tiempo por cada posicion.
@@ -90,7 +90,7 @@ public class Practica1 {
 		int resultado=0;
 		pilaN.push(n);pilaK.push(k);pilaL.push(1);pilaS.push(0);
 		while(!pilaN.empty()) {
-			while(pilaN.peek()>0&&pilaK.peek()>0) {
+			while(pilaN.peek()>0&&pilaK.peek()>0&&pilaL.peek()<=2) {
 				switch(pilaL.peek()) {
 					case 1:
 						pilaN.push(pilaN.peek()-1);
@@ -102,12 +102,18 @@ public class Practica1 {
 						break;
 				}
 				pilaL.push(1);
-				
+				if(pilaN.peek()>=pilaK.peek()&&pilaN.peek()!=0&&(pilaK.peek()==0 ||pilaK.peek()==pilaN.peek())) {
+					pilaS.push(1);
+				}else {
+					pilaS.push(0);
+				}
+				System.out.println("Calculando N:"+pilaN.peek()+", K:"+pilaK.peek()+", resultado: "+pilaS.peek());
 			}
 			pilaN.pop();pilaK.pop();pilaL.pop();resultado=pilaS.pop();
 			if(!pilaN.empty()) {
 				pilaL.push(pilaL.pop()+1);
 				pilaS.push(pilaS.pop()+resultado);
+
 			}
 		}
 		return resultado;
