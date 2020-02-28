@@ -1,15 +1,24 @@
+import java.util.Scanner;
 import java.util.Stack;
 
 public class Practica1 {
 
 	public static void main (String []args) {
 
-		int[] numeros = {1,2,4,10,20,50,100,1000,2000,5000,10000,11000}; 
-		boolean opcion_correcta=true;
-
-		System.out.println("Iterativo: "+iterativo(3,2));
-		System.out.println("Recursivo: "+recursivo(3,2));
-		System.out.println("Pilas: "+pilas(3,2));
+		int n = 0, k = 0;
+		do {
+			n = leerDouble("Escriba el valor de n:");
+			k = leerDouble("Escriba el valor de k:");
+			
+			if (n < k) {
+				System.out.println("No se cumple la condición n >= k. Vuelva a intentarlo.");
+			}
+			
+		}while(n < k);
+		
+		System.out.println("Iterativo: "+iterativo(n,k));
+		System.out.println("Recursivo: "+recursivo(n,k));
+		System.out.println("Pilas: "+pilas(n,k));
 
 
 		/*for(int i=0;i<numeros.length;i++) { // Recorre el array numeros calculando el tiempo por cada posicion.
@@ -130,5 +139,25 @@ public class Practica1 {
 				break;
 		}
 		return resultado;
+	}
+	public static int leerDouble(String mensaje) {
+		Scanner TECLADO = new Scanner(System.in);
+		int numero = 0;
+		boolean valido = true;
+		do {
+			System.out.println(mensaje);
+			try {
+				valido = true;
+				numero = TECLADO.nextInt();
+				
+
+			}catch(Exception InputMismatchException) {
+				System.out.println("El dato introducido no es correcto, introduzca uno valido: ");
+				valido=false;
+				TECLADO.nextLine();
+			}
+		}while(!valido);
+
+		return numero;
 	}
 }
