@@ -57,21 +57,6 @@ public class Practica1 {
 				num_nk--;
 			}			
 		}
-				
-		//OTRA FORMA DE CALCULAR EL FACTORIAL, DA IGUAL DE MAL.
-		/*for(int i = 2; i <= n; i++) {
-			factorialn = factorialn * i;
-			System.out.println("N "+ factorialn);
-		}
-		
-		for(int i = 2; i <= k; i++) {
-			factorialk = factorialk * i;
-		}
-		
-		for(int i = 2; i <= n-k; i++) {
-			factorialnk = factorialnk * i;
-		}
-		System.out.println("Factorial N: "+ factorialn +"Factorial K: "+ factorialk +"Factorial nk: "+ factorialnk);*/
 		
 		return factorialn/(factorialk*factorialnk);
 	}
@@ -111,20 +96,27 @@ public class Practica1 {
 						break;
 				}
 				pilaL.push(1);
-				if(pilaN.peek()>=pilaK.peek()&&pilaN.peek()!=0&&(pilaK.peek()==0 ||pilaK.peek()==pilaN.peek())) {
+				/*if((pilaN.peek()>=pilaK.peek()&&pilaN.peek()!=0)&&(pilaK.peek()==0 ||pilaK.peek()==pilaN.peek())) {
+					pilaS.push(1);
+				}else {
+					pilaS.push(0);
+				}
+				*/
+				if (pilaK.peek() == 0) {
 					pilaS.push(1);
 				}else {
 					pilaS.push(0);
 				}
 				System.out.println("Calculando N:"+pilaN.peek()+", K:"+pilaK.peek()+", resultado: "+pilaS.peek());
 			}
-			pilaN.pop();pilaK.pop();pilaL.pop();resultado=pilaS.pop();
+			pilaN.pop();pilaK.pop();pilaL.pop();
+			resultado=pilaS.pop();
 			if(!pilaN.empty()) {
 				pilaL.push(pilaL.pop()+1);
 				pilaS.push(pilaS.pop()+resultado);
-
 			}
 		}
+		System.out.println("MIRA LOKO DA ESTO "+resultado);
 		return resultado;
 	}
 	
@@ -140,6 +132,7 @@ public class Practica1 {
 		}
 		return resultado;
 	}
+	
 	public static int leerDouble(String mensaje) {
 		Scanner TECLADO = new Scanner(System.in);
 		int numero = 0;
@@ -149,8 +142,6 @@ public class Practica1 {
 			try {
 				valido = true;
 				numero = TECLADO.nextInt();
-				
-
 			}catch(Exception InputMismatchException) {
 				System.out.println("El dato introducido no es correcto, introduzca uno valido: ");
 				valido=false;
