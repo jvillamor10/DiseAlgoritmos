@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -7,38 +8,37 @@ public class Practica1 {
 
 		int n = 0, k = 0;
 		do {
-			n = leerDouble("Escriba el valor de n:");
-			k = leerDouble("Escriba el valor de k:");
+			n = leerDouble("Escriba el valor de n: ");
+			k = leerDouble("Escriba el valor de k: ");
 			
 			if (n < k) {
 				System.out.println("No se cumple la condición n >= k. Vuelva a intentarlo.");
 			}
 			
-		}while(n < k);
-		
+		} while(n < k);
+						
+		long inicioIterativo = System.currentTimeMillis();
 		System.out.println("Iterativo: "+iterativo(n,k));
+		long finalIterativo = System.currentTimeMillis();
+		
+		long inicioRecursivo = System.currentTimeMillis();
 		System.out.println("Recursivo: "+recursivo(n,k));
+		long finalRecursivo = System.currentTimeMillis();
+		
+		long inicioPilas = System.currentTimeMillis();
 		System.out.println("Pilas: "+pilas(n,k));
-
-
-		/*for(int i=0;i<numeros.length;i++) { // Recorre el array numeros calculando el tiempo por cada posicion.
-			//long tiempoit1_inicial=calcularTiempo(tiempo); // Calcula el tiempo en el que empieza.
-			double it1=iterativo1(numeros[i]); // Lleva a cabo la ejecución del método.
-			//long tiempoit1_final=calcularTiempo(tiempo)-tiempoit1_inicial; // El tiempo final será el tiempo hasta el momento menos el de inicio.
-			//long tiempoit2_inicial=calcularTiempo(tiempo);
-			double it2=iterativo2(numeros[i]);
-			//long tiempoit2_final=calcularTiempo(tiempo)-tiempoit2_inicial;
-			//long tiemporec_inicial=calcularTiempo(tiempo);
-			double rec=recursivo(numeros[i]);
-			//long tiemporec_final=calcularTiempo(tiempo)-tiemporec_inicial;
-			
-			if(it1<10) {
-				System.out.println(numeros[i]+"\t|   "+it1+"\t\t|\t"+tiempoit1_final+"\t|\t"+tiempoit2_final+"\t\t|\t"+tiemporec_final); // Mostramos por pantalla los tiempos
-			}else {
-				System.out.println(numeros[i]+"\t|   "+it1+"\t|\t"+tiempoit1_final+"\t|\t"+tiempoit2_final+"\t\t|\t"+tiemporec_final);
-			}
-		}		*/
+		long finalPilas = System.currentTimeMillis();
+		
+		System.out.println("Los tiempos empíricos son:");
+		long tiempoIterativo = finalIterativo - inicioIterativo;
+		long tiempoRecursivo = finalRecursivo - inicioRecursivo;
+		long tiempoPilas = finalPilas - inicioPilas;
+		
+		System.out.println("Iterativo: "+tiempoIterativo+"\nRecursivo: "+tiempoRecursivo+"\nPilas: "+tiempoPilas);
+		
+		
 	}
+	
 	public static long iterativo(int n,int k){
 		
 		long factorialn=1,factorialk=1,factorialnk=1;
@@ -63,7 +63,7 @@ public class Practica1 {
 	
 	public static int recursivo(int n,int k) {
 		int resultado=0;
-		
+
 		if(k!=0&&n!=0) {
 			resultado=recursivo(n-1,k-1)+recursivo(n-1,k);
 		}else {
@@ -71,7 +71,7 @@ public class Practica1 {
 				resultado++;
 			}
 		}
-		
+
 		return resultado;
 	}
 	
@@ -84,7 +84,7 @@ public class Practica1 {
 		int resultado=0;
 		pilaN.push(n);pilaK.push(k);pilaL.push(1);pilaS.push(0);
 		while(!pilaN.empty()) {
-			while(pilaN.peek()>0&&pilaK.peek()>0&&pilaL.peek()<=2) {
+			while(pilaN.peek()!=0&&pilaK.peek()!=0&&pilaL.peek()<=2) {
 				switch(pilaL.peek()) {
 					case 1:
 						pilaN.push(pilaN.peek()-1);
@@ -96,13 +96,8 @@ public class Practica1 {
 						break;
 				}
 				pilaL.push(1);
-				/*if((pilaN.peek()>=pilaK.peek()&&pilaN.peek()!=0)&&(pilaK.peek()==0 ||pilaK.peek()==pilaN.peek())) {
-					pilaS.push(1);
-				}else {
-					pilaS.push(0);
-				}
-				*/
-				if (pilaK.peek() == 0) {
+
+				if (pilaK.peek() == 0 && pilaN.peek() >= 0) {
 					pilaS.push(1);
 				}else {
 					pilaS.push(0);
@@ -116,20 +111,7 @@ public class Practica1 {
 				pilaS.push(pilaS.pop()+resultado);
 			}
 		}
-		System.out.println("MIRA LOKO DA ESTO "+resultado);
-		return resultado;
-	}
-	
-	public static long calcularTiempo(char opcion) { // Calculará el tiempo el milisegundos o nanosegundos según la opción
-		long resultado=0;
-		switch(opcion) {
-			case 'm':
-				resultado=System.currentTimeMillis();
-				break;
-			case 'n':
-				resultado=System.nanoTime();
-				break;
-		}
+		//System.out.println("MIRA LOKO DA ESTO "+resultado);
 		return resultado;
 	}
 	
@@ -138,7 +120,7 @@ public class Practica1 {
 		int numero = 0;
 		boolean valido = true;
 		do {
-			System.out.println(mensaje);
+			System.out.print(mensaje);
 			try {
 				valido = true;
 				numero = TECLADO.nextInt();
