@@ -79,6 +79,11 @@ public class Practica1 {
 		int resultado=0;
 		
 		pilaN.push(n);pilaK.push(k);pilaL.push(1);pilaS.push(0);
+		// A LA GUARRA 
+		if (pilaK.peek() == 0 && pilaN.peek() == 0) {
+			pilaS.push(1);
+		}
+		
 		while(!pilaN.empty()) {
 			while(pilaN.peek()>=0 && pilaK.peek()>=0 && pilaL.peek()<=2) {
 				switch(pilaL.peek()) {
@@ -98,7 +103,7 @@ public class Practica1 {
 				}else {
 					pilaS.push(0);
 				}
-				System.out.println("Calculando N:"+pilaN.peek()+", K:"+pilaK.peek()+", resultado: "+pilaS.peek());
+				//System.out.println("Calculando N:"+pilaN.peek()+", K:"+pilaK.peek()+", resultado: "+pilaS.peek());
 			}
 			pilaN.pop();pilaK.pop();pilaL.pop();
 			resultado=pilaS.pop();
