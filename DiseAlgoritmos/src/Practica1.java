@@ -1,4 +1,3 @@
-import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -34,9 +33,7 @@ public class Practica1 {
 		long tiempoRecursivo = finalRecursivo - inicioRecursivo;
 		long tiempoPilas = finalPilas - inicioPilas;
 		
-		System.out.println("Iterativo: "+tiempoIterativo+"\nRecursivo: "+tiempoRecursivo+"\nPilas: "+tiempoPilas);
-		
-		
+		System.out.println("Iterativo: "+tiempoIterativo+"\nRecursivo: "+tiempoRecursivo+"\nPilas: "+tiempoPilas);	
 	}
 	
 	public static long iterativo(int n,int k){
@@ -50,8 +47,7 @@ public class Practica1 {
 			if(k>0) {
 				factorialk=factorialk*k;
 				k--;
-			}
-			
+			}			
 			if(num_nk>0) {
 				factorialnk=factorialnk*num_nk;
 				num_nk--;
@@ -80,11 +76,11 @@ public class Practica1 {
 		Stack<Integer>pilaK=new Stack<Integer>(); //pila del número k
 		Stack<Integer>pilaL=new Stack<Integer>(); //pila de llamadas
 		Stack<Integer>pilaS=new Stack<Integer>(); //pila de resultados
-		
 		int resultado=0;
+		
 		pilaN.push(n);pilaK.push(k);pilaL.push(1);pilaS.push(0);
 		while(!pilaN.empty()) {
-			while(pilaN.peek()!=0&&pilaK.peek()!=0&&pilaL.peek()<=2) {
+			while(pilaN.peek()>=0 && pilaK.peek()>=0 && pilaL.peek()<=2) {
 				switch(pilaL.peek()) {
 					case 1:
 						pilaN.push(pilaN.peek()-1);
@@ -97,7 +93,7 @@ public class Practica1 {
 				}
 				pilaL.push(1);
 
-				if (pilaK.peek() == 0 && pilaN.peek() >= 0) {
+				if (pilaK.peek() == 0 && pilaN.peek() == 0) {
 					pilaS.push(1);
 				}else {
 					pilaS.push(0);
@@ -111,7 +107,6 @@ public class Practica1 {
 				pilaS.push(pilaS.pop()+resultado);
 			}
 		}
-		//System.out.println("MIRA LOKO DA ESTO "+resultado);
 		return resultado;
 	}
 	
