@@ -16,22 +16,22 @@ public class Practica1 {
 			
 		} while(n < k);
 						
-		long inicioIterativo = System.currentTimeMillis();
+		double inicioIterativo = System.nanoTime();
 		System.out.println("Iterativo: "+iterativo(n,k));
-		long finalIterativo = System.currentTimeMillis();
+		double finalIterativo = System.nanoTime();
 		
-		long inicioRecursivo = System.currentTimeMillis();
+		double inicioRecursivo = System.nanoTime();
 		System.out.println("Recursivo: "+recursivo(n,k));
-		long finalRecursivo = System.currentTimeMillis();
+		double finalRecursivo = System.nanoTime();
 		
-		long inicioPilas = System.currentTimeMillis();
+		double inicioPilas = System.nanoTime();
 		System.out.println("Pilas: "+pilas(n,k));
-		long finalPilas = System.currentTimeMillis();
+		double finalPilas = System.nanoTime();
 		
-		System.out.println("Los tiempos empíricos son:");
-		long tiempoIterativo = finalIterativo - inicioIterativo;
-		long tiempoRecursivo = finalRecursivo - inicioRecursivo;
-		long tiempoPilas = finalPilas - inicioPilas;
+		System.out.println("Los tiempos empíricos en nanosegundos son:");
+		double tiempoIterativo = finalIterativo - inicioIterativo;
+		double tiempoRecursivo = finalRecursivo - inicioRecursivo;
+		double tiempoPilas = finalPilas - inicioPilas;
 		
 		System.out.println("Iterativo: "+tiempoIterativo+"\nRecursivo: "+tiempoRecursivo+"\nPilas: "+tiempoPilas);	
 	}
@@ -79,7 +79,7 @@ public class Practica1 {
 		int resultado=0;
 		
 		pilaN.push(n);pilaK.push(k);pilaL.push(1);pilaS.push(0);
-		// A LA GUARRA 
+		// A LA GUARRA, no hay otra forma.
 		if (pilaK.peek() == 0 && pilaN.peek() == 0) {
 			pilaS.push(1);
 		}
