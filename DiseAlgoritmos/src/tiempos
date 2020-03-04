@@ -1,0 +1,30 @@
+Tiempos teóricos
+
+
+Iterativo: T(n)=5+n*15+3 = 8+15n;
+O(n).
+
+Recursivo: T(n)=1+T(n-1)+T(n-1) = 2T(n-1)+1
+
+tn-2tn-1 = 1
+(x-2)(x-1)=0
+tn=c0*1^n + c1*2^n
+t0=0-->c0+c2=0
+t1=1-->c0+2c1=1
+
+Por tanto:
+c1=-1, C2=1
+
+tn=2^n-1, perteneciendo a O(2^n)
+
+
+Pilas: T(n)=11+n*n*19+1=19n^2+12;
+O(n^2)
+
+
+Conclusión:
+Tras hacer los estudios de los tiempos empíricos y teóricos, se ha detectado que el método más óptimo para obtener el número combinatorio,
+de entre los tres casos posibles, es el iterativo, ya que tarda un tiempo lineal, y no uno exponencial, como son el recursivo (2^n) y el de pilas (n^2).
+Esto se puede demostrar a través del cálculo empírico, en el cual, con números pequeños o ligeros, el método recursivo es mucho más rápido que el iterativo, mientras
+que con números más grandes, lo que lleva a más operaciones, el tiempo incrementa considerablemente.
+

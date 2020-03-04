@@ -28,7 +28,7 @@ public class Practica1 {
 		System.out.println("Pilas: "+pilas(n,k));
 		double finalPilas = System.nanoTime();
 		
-		System.out.println("Los tiempos empíricos en nanosegundos son:");
+		System.out.println("Los tiempos empíricos en segundos son:");
 		double tiempoIterativo = finalIterativo - inicioIterativo;
 		double tiempoRecursivo = finalRecursivo - inicioRecursivo;
 		double tiempoPilas = finalPilas - inicioPilas;
