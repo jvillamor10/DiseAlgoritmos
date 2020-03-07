@@ -26,5 +26,7 @@ Conclusión:
 Tras hacer los estudios de los tiempos empíricos y teóricos, se ha detectado que el método más óptimo para obtener el número combinatorio,
 de entre los tres casos posibles, es el iterativo, ya que tarda un tiempo lineal, y no uno exponencial, como son el recursivo (2^n) y el de pilas (n^2).
 Esto se puede demostrar a través del cálculo empírico, en el cual, con números pequeños o ligeros, el método recursivo es mucho más rápido que el iterativo, mientras
-que con números más grandes, lo que lleva a más operaciones, el tiempo incrementa considerablemente.
+que con números más grandes, lo que lleva a más operaciones, el tiempo incrementa considerablemente. Aún así, los resultados teóricos y empíricos no coinciden. El tiempo 
+teórico de las pilas es inferior que el del recursivo, pero luego empíricamente no es así. Esto podría ser debido por el hecho de manejar cuatro pilas y sus demás operaciones,
+las cuales se han considerado constantes en el estudio teórico y se desconoce su verdadero valor teórico.
 
