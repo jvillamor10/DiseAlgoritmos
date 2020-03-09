@@ -15,20 +15,26 @@ public class Practica1 {
 			}
 			
 		} while(n < k);
-						
+		
+		long it;				
 		double inicioIterativo = System.nanoTime();
-		System.out.println("Iterativo: "+iterativo(n,k));
+		it = iterativo(n,k);
 		double finalIterativo = System.nanoTime();
-		
+		System.out.println("Iterativo: "+ it);
+
+		long re;
 		double inicioRecursivo = System.nanoTime();
-		System.out.println("Recursivo: "+recursivo(n,k));
+		re = recursivo(n,k);
 		double finalRecursivo = System.nanoTime();
-		
+		System.out.println("Recursivo: "+ re);
+
+		long pi;
 		double inicioPilas = System.nanoTime();
-		System.out.println("Pilas: "+pilas(n,k));
+		pi = pilas(n,k);
 		double finalPilas = System.nanoTime();
+		System.out.println("Pilas: "+ pi);
 		
-		System.out.println("Los tiempos empíricos en segundos son:");
+		System.out.println("Los tiempos empíricos en nanosegundos son:");
 		double tiempoIterativo = finalIterativo - inicioIterativo;
 		double tiempoRecursivo = finalRecursivo - inicioRecursivo;
 		double tiempoPilas = finalPilas - inicioPilas;
@@ -36,23 +42,22 @@ public class Practica1 {
 		System.out.println("Iterativo: "+tiempoIterativo+"\nRecursivo: "+tiempoRecursivo+"\nPilas: "+tiempoPilas);	
 	}
 	
+	public static long factorial(int n) {
+		long fact = 1;		
+		for(int i = 2; i <= n; i++) {
+			fact = fact * i;
+		}
+
+		return fact;
+	}
+	
 	public static long iterativo(int n,int k){
 		
 		long factorialn=1,factorialk=1,factorialnk=1;
-		long num_nk=n-k;
 		
-		while(n>0) {
-			factorialn=factorialn*n;
-			n--;
-			if(k>0) {
-				factorialk=factorialk*k;
-				k--;
-			}			
-			if(num_nk>0) {
-				factorialnk=factorialnk*num_nk;
-				num_nk--;
-			}			
-		}
+		factorialn = factorial(n);
+		factorialk = factorial(k);
+		factorialnk = factorial(n-k);
 		
 		return factorialn/(factorialk*factorialnk);
 	}
@@ -60,14 +65,12 @@ public class Practica1 {
 	public static int recursivo(int n,int k) {
 		int resultado=0;
 
-		if(k!=0&&n!=0) {
+		if(k == 0 && n>0 || n == k) {
+			resultado = 1;
+		}else{
 			resultado=recursivo(n-1,k-1)+recursivo(n-1,k);
-		}else {
-			if(n>=k) {
-				resultado++;
-			}
 		}
-
+		
 		return resultado;
 	}
 	
@@ -76,10 +79,8 @@ public class Practica1 {
 		Stack<Integer>pilaK=new Stack<Integer>(); //pila del número k
 		Stack<Integer>pilaL=new Stack<Integer>(); //pila de llamadas
 		Stack<Integer>pilaS=new Stack<Integer>(); //pila de resultados
-		int resultado=0;
 		
 		pilaN.push(n);pilaK.push(k);pilaL.push(1);pilaS.push(0);
-		// A LA GUARRA, no hay otra forma.
 		if (pilaK.peek() == 0 && pilaN.peek() == 0) {
 			pilaS.push(1);
 		}
@@ -106,13 +107,12 @@ public class Practica1 {
 				//System.out.println("Calculando N:"+pilaN.peek()+", K:"+pilaK.peek()+", resultado: "+pilaS.peek());
 			}
 			pilaN.pop();pilaK.pop();pilaL.pop();
-			resultado=pilaS.pop();
 			if(!pilaN.empty()) {
 				pilaL.push(pilaL.pop()+1);
-				pilaS.push(pilaS.pop()+resultado);
+				pilaS.push(pilaS.pop()+pilaS.pop());
 			}
 		}
-		return resultado;
+		return pilaS.peek();
 	}
 	
 	public static int leerDouble(String mensaje) {
